@@ -28,6 +28,12 @@ public class PGMImage {
 
 	private double maxgrey = 255;
 
+	public PGMImage(int width, int height, byte[] pixels) {
+		this.width = width;
+		this.height = height;
+		this.pixels = pixels;
+	}
+	
 	PGMImage(File file) throws FileNotFoundException, IOException {
 		StreamTokenizer s = new StreamTokenizer(new FileReader(file));
 		s.commentChar('#');
@@ -65,12 +71,9 @@ public class PGMImage {
 		BufferedImage image = new BufferedImage(width, height,
 				BufferedImage.TYPE_BYTE_GRAY);
 		WritableRaster raster = image.getRaster();
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				raster.setSample(x, y, 0, pixels[y * width + x]);
-			}
-		}
+		raster.setDataElements(0, 0, width, height, pixels);
 		return image;
 	}
+	
 
 }
