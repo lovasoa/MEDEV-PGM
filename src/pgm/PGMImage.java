@@ -28,12 +28,25 @@ public class PGMImage {
 
 	private double maxgrey = 255;
 
+	/**
+	 * Creates an image from raw pixel data bytes (-127=black, +128=white)
+	 * @param width
+	 * @param height
+	 * @param pixels
+	 */
 	public PGMImage(int width, int height, byte[] pixels) {
 		this.width = width;
 		this.height = height;
 		this.pixels = pixels;
 	}
 	
+	/**
+	 * Creates an image from a PGM file
+	 * @param file The file to read
+	 * @throws FileNotFoundException
+	 * @throws IOException If there is a problem while reading the file
+	 * @throws UnsupportedOperationException if the image is not in the PGM P2 format
+	 */
 	PGMImage(File file) throws FileNotFoundException, IOException {
 		StreamTokenizer s = new StreamTokenizer(new FileReader(file));
 		s.commentChar('#');
@@ -67,6 +80,10 @@ public class PGMImage {
 		}
 	}
 
+	/**
+	 * Converts the image to a {@link BufferedImage}
+	 * @return The image
+	 */
 	BufferedImage toImage() {
 		BufferedImage image = new BufferedImage(width, height,
 				BufferedImage.TYPE_BYTE_GRAY);
