@@ -5,18 +5,24 @@
  */
 package pgm;
 
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author zhaoshuli
  */
 public class Main {
-
-  private int x;
-
   /**
    * @param args the command line arguments
    */
   public static void main(String[] args) {
     Mainwin.main(args);
+  }
+
+  static void openFile(File file) throws IOException {
+    PGMImage pgm = new PGMImage(file);
+    Mainwin.displayImage(pgm.toImage());
   }
 }

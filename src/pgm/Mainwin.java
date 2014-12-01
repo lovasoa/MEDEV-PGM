@@ -5,11 +5,19 @@
  */
 package pgm;
 
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+
 /**
  *
  * @author zhaoshuli
  */
 public class Mainwin extends javax.swing.JFrame {
+
+  private JFileChooser fc;
 
   /**
    * Creates new form Mainwin
@@ -29,13 +37,13 @@ public class Mainwin extends javax.swing.JFrame {
 
     jSplitPane2 = new javax.swing.JSplitPane();
     jPanel5 = new javax.swing.JPanel();
-    jLabel3 = new javax.swing.JLabel();
+    imageLabel = new javax.swing.JLabel();
     jPanel6 = new javax.swing.JPanel();
     jButton2 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    jLabel3.setText("Image");
+    imageLabel.setText("Image");
 
     javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
     jPanel5.setLayout(jPanel5Layout);
@@ -43,20 +51,21 @@ public class Mainwin extends javax.swing.JFrame {
       jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel5Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel5Layout.setVerticalGroup(
       jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel5Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
         .addContainerGap())
     );
 
     jSplitPane2.setRightComponent(jPanel5);
 
     jButton2.setText("Ouvrir");
+    jButton2.setToolTipText("Ouvrir un fichier pgm");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton2ActionPerformed(evt);
@@ -101,16 +110,39 @@ public class Mainwin extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private JFileChooser getFileChooser(){
+    if (fc == null) fc = new JFileChooser();
+    return fc;
+  }
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // TODO add your handling code here:
+    JFileChooser fc = getFileChooser();
+    int returnVal = fc.showOpenDialog(this);
+
+    if (returnVal == JFileChooser.APPROVE_OPTION) {
+      try {
+        File file = fc.getSelectedFile();
+        //This is where a real application would open the file.
+        System.out.println("Opening: " + file.getName() + ".");
+        Main.openFile(file);
+      } catch (IOException | UnsupportedOperationException e) {
+        System.err.println("Unable to open file");
+        e.printStackTrace();
+      }
+    } else {
+      System.err.println("Open command cancelled by user.");
+    }
   }//GEN-LAST:event_jButton2ActionPerformed
 
+  static void displayImage(BufferedImage image) {
+    imageLabel.setIcon(new ImageIcon(image));
+    
+  }
   /**
    * @param args the command line arguments
    */
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
      */
@@ -130,7 +162,7 @@ public class Mainwin extends javax.swing.JFrame {
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
       java.util.logging.Logger.getLogger(Mainwin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
-        //</editor-fold>
+    //</editor-fold>
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
@@ -141,8 +173,8 @@ public class Mainwin extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private static javax.swing.JLabel imageLabel;
   private javax.swing.JButton jButton2;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JPanel jPanel5;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JSplitPane jSplitPane2;
