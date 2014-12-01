@@ -13,6 +13,7 @@ import java.io.IOException;
  * @author zhaoshuli
  */
 public class Main {
+	static PGMImage opened;
   /**
    * @param args the command line arguments
    */
@@ -21,7 +22,12 @@ public class Main {
   }
 
   static void openFile(File file) throws IOException {
-    PGMImage pgm = new PGMImage(file);
-    Mainwin.displayImage(pgm.toImage());
+    opened = new PGMImage(file);
+    Mainwin.displayImage(opened.toImage());
+  }
+
+  static void histogramme() {
+    PGMImage hist = opened.histogramme();
+    Mainwin.displayImage(hist.toImage());
   }
 }

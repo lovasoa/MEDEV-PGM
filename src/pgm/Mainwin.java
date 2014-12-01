@@ -10,6 +10,10 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -71,22 +75,34 @@ public class Mainwin extends javax.swing.JFrame {
         jButton2ActionPerformed(evt);
       }
     });
+    
+    JButton btnHistogramme = new JButton("Histogramme");
+    btnHistogramme.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent evt) {
+    		btnHistogrammeActionPerformed(evt);
+    	}
+    });
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-    jPanel6.setLayout(jPanel6Layout);
     jPanel6Layout.setHorizontalGroup(
-      jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jButton2)
-        .addContainerGap())
+    	jPanel6Layout.createParallelGroup(Alignment.TRAILING)
+    		.addGroup(jPanel6Layout.createSequentialGroup()
+    			.addContainerGap()
+    			.addComponent(jButton2)
+    			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    		.addGroup(Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+    			.addComponent(btnHistogramme)
+    			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel6Layout.setVerticalGroup(
-      jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel6Layout.createSequentialGroup()
-        .addComponent(jButton2)
-        .addGap(0, 255, Short.MAX_VALUE))
+    	jPanel6Layout.createParallelGroup(Alignment.LEADING)
+    		.addGroup(jPanel6Layout.createSequentialGroup()
+    			.addComponent(jButton2)
+    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addComponent(btnHistogramme)
+    			.addContainerGap(230, Short.MAX_VALUE))
     );
+    jPanel6.setLayout(jPanel6Layout);
 
     jSplitPane2.setLeftComponent(jPanel6);
 
@@ -110,7 +126,7 @@ public class Mainwin extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private JFileChooser getFileChooser(){
+private JFileChooser getFileChooser(){
     if (fc == null) fc = new JFileChooser();
     return fc;
   }
@@ -132,10 +148,13 @@ public class Mainwin extends javax.swing.JFrame {
       System.err.println("Open command cancelled by user.");
     }
   }//GEN-LAST:event_jButton2ActionPerformed
-
+  
+  protected void btnHistogrammeActionPerformed(ActionEvent evt) {
+	Main.histogramme();
+  }
+  
   static void displayImage(BufferedImage image) {
     imageLabel.setIcon(new ImageIcon(image));
-    
   }
   /**
    * @param args the command line arguments
@@ -178,5 +197,4 @@ public class Mainwin extends javax.swing.JFrame {
   private javax.swing.JPanel jPanel5;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JSplitPane jSplitPane2;
-  // End of variables declaration//GEN-END:variables
 }
