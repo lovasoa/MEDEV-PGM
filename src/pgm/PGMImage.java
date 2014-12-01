@@ -99,9 +99,9 @@ public class PGMImage {
 	}
 
 	/**
-	 * Generates an histogram of the image.
-	 * the x-axis represents color levels
+	 * Generates an histogram of the image. the x-axis represents color levels
 	 * the y-axis represents the frequency of the color level in the image
+	 * 
 	 * @return The histogram
 	 */
 	public PGMImage histogram() {
@@ -119,12 +119,33 @@ public class PGMImage {
 		}
 		for (int x = 0; x < w; x++) {
 			int val = (maxlevel == 0) ? 0 : (levels[x] * h) / maxlevel;
-			System.out.println(levels[x] + "  " + maxlevel + "  " + h + "  " + val);
 			for (int y = h - 1 - val; y >= 0; y--) {
 				data[x + y * w] = (byte) 0xFF;
 			}
 		}
 		return new PGMImage(w, h, data);
+	}
+
+	/**
+	 * Returns a black&white image generated from the current image
+	 * 
+	 * @param level the level (between 0 and 255) above which a pixel is considered white
+	 * @return
+	 */
+	public PGMImage threshold(int level) {
+		byte[] data = new byte[pixels.length];
+		for (int i = 0; i < pixels.length; i++) {
+			data[i] = ((int)pixels[i] > level) ? (byte)0xFF : (byte)0x00;
+		}
+		return new PGMImage(width, height, data);
+	}
+
+	/**
+	 * Returns a black&white image with level set at 127
+	 * @return
+	 */
+	public PGMImage threshold() {
+		return threshold(0);
 	}
 
 }

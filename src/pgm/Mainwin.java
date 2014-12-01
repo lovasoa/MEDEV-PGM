@@ -76,22 +76,41 @@ public class Mainwin extends javax.swing.JFrame {
       }
     });
     
-    JButton btnHistogramme = new JButton("Histogramme");
+    final JToggleButton btnHistogramme = new JToggleButton("Histogramme");
     btnHistogramme.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent evt) {
-    		btnHistogrammeActionPerformed(evt);
+    		if(btnHistogramme.isSelected()){
+    			btnHistogrammeActionPerformed(evt);
+    		} else {
+    			displayImage(Main.opened.toImage());
+    		}
+    	}
+    });
+
+    
+    final JToggleButton btnSeuillage = new JToggleButton("Seuillage");
+    btnSeuillage.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent arg0) {
+    		if (btnSeuillage.isSelected()){
+    			Main.threshold();
+    		} else {
+    			displayImage(Main.opened.toImage());
+    		}
     	}
     });
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6Layout.setHorizontalGroup(
-    	jPanel6Layout.createParallelGroup(Alignment.TRAILING)
+    	jPanel6Layout.createParallelGroup(Alignment.LEADING)
     		.addGroup(jPanel6Layout.createSequentialGroup()
-    			.addContainerGap()
-    			.addComponent(jButton2)
-    			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    		.addGroup(Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-    			.addComponent(btnHistogramme)
+    			.addGroup(jPanel6Layout.createParallelGroup(Alignment.LEADING)
+    				.addGroup(jPanel6Layout.createSequentialGroup()
+    					.addContainerGap()
+    					.addComponent(jButton2))
+    				.addComponent(btnHistogramme)
+    				.addGroup(jPanel6Layout.createSequentialGroup()
+    					.addContainerGap()
+    					.addComponent(btnSeuillage)))
     			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel6Layout.setVerticalGroup(
@@ -100,7 +119,9 @@ public class Mainwin extends javax.swing.JFrame {
     			.addComponent(jButton2)
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnHistogramme)
-    			.addContainerGap(230, Short.MAX_VALUE))
+    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addComponent(btnSeuillage)
+    			.addContainerGap(199, Short.MAX_VALUE))
     );
     jPanel6.setLayout(jPanel6Layout);
 

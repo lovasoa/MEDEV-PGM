@@ -9,25 +9,32 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- *
+ * 
  * @author zhaoshuli
  */
 public class Main {
 	static PGMImage opened;
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String[] args) {
-    Mainwin.main(args);
-  }
 
-  static void openFile(File file) throws IOException {
-    opened = new PGMImage(file);
-    Mainwin.displayImage(opened.toImage());
-  }
+	/**
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+		Mainwin.main(args);
+	}
 
-  static void histogram() {
-    PGMImage hist = opened.histogram();
-    Mainwin.displayImage(hist.toImage());
-  }
+	static void openFile(File file) throws IOException {
+		opened = new PGMImage(file);
+		Mainwin.displayImage(opened.toImage());
+	}
+
+	static void histogram() {
+		PGMImage hist = opened.histogram();
+		Mainwin.displayImage(hist.toImage());
+	}
+
+	static void threshold() {
+		PGMImage res = opened.threshold();
+		Mainwin.displayImage(res.toImage());
+	}
 }
