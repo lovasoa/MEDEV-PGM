@@ -5,52 +5,66 @@
  */
 package pgm;
 
+import static java.io.StreamTokenizer.TT_EOF;
+import static java.io.StreamTokenizer.TT_WORD;
+
 import java.awt.image.BufferedImage;
-import java.io.*;
-import static java.io.StreamTokenizer.*;
-import java.util.Scanner;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StreamTokenizer;
 
 /**
- *
+ * 
  * @author zhaoshuli
  */
 public class PGMImage {
 
-  private int width = 0;
-  private int height = 0;
-  private char[][] pixels;
+	private int width = 0;
+	private int height = 0;
+	private byte[] pixels;
 
-  private double maxgrey = 255;
+	private double maxgrey = 255;
 
-  PGMImage(File file) throws FileNotFoundException, IOException {
-    StreamTokenizer s = new StreamTokenizer(new FileReader(file));
-    s.commentChar('#');
+	PGMImage(File file) throws FileNotFoundException, IOException {
+		StreamTokenizer s = new StreamTokenizer(new FileReader(file));
+		s.commentChar('#');
+		s.parseNumbers();
+		s.wordChars('A', 'Z');
 
-    //Header
-    //Type
-    assert (s.nextToken() == TT_WORD);
-    if (!"P2".equals(s.sval)) {
-      throw new UnsupportedOperationException("Only P2 supported yet.");
-    }
+		// Header
+		// Type
+		if (s.nextToken() != TT_WORD || !s.sval.equals("P2")) {
+			throw new UnsupportedOperationException("Only P2 supported yet.");
+		}
 
-    //width
-    assert (s.nextToken() == TT_NUMBER);
-    width = (int) s.nval;
+		// width
+		s.nextToken();
+		width = (int) s.nval;
 
-    //height
-    assert (s.nextToken() == TT_NUMBER);
-    height = (int) s.nval;
+		// height
+		s.nextToken();
+		height = (int) s.nval;
 
-    //Maximum grey value
-    assert (s.nextToken() == TT_NUMBER);
-    maxgrey = s.nval;
-    
-    pixels = new char[height][width];
+		// Maximum grey value
+		s.nextToken();
+		maxgrey = s.nval;
 
-  }
+		int numPixels = width*height;
+		pixels = new byte[numPixels];
+		for (int i = 0; s.nextToken() != TT_EOF && i<numPixels; i++) {
+			byte val = (byte) (s.nval * 255 / maxgrey);
+			pixels[i++] = val;
+		}
+	}
 
-  BufferedImage toImage() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
+	BufferedImage toImage() {
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+        WritableRaster raster = (WritableRaster) image.getData();
+        raster.setDataElements(0, 0, width, height, pixels);
+        return image;
+	}
 
 }
