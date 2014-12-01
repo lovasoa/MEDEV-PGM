@@ -26,8 +26,8 @@ public class Main {
     Mainwin.displayImage(opened.toImage());
   }
 
-  static void histogramme() {
-    PGMImage hist = opened.histogramme();
+  static void histogram() {
+    PGMImage hist = opened.histogram();
     Mainwin.displayImage(hist.toImage());
   }
 }

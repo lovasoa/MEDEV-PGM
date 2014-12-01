@@ -150,7 +150,7 @@ private JFileChooser getFileChooser(){
   }//GEN-LAST:event_jButton2ActionPerformed
   
   protected void btnHistogrammeActionPerformed(ActionEvent evt) {
-	Main.histogramme();
+	Main.histogram();
   }
   
   static void displayImage(BufferedImage image) {
