@@ -98,6 +98,12 @@ public class PGMImage {
 		return image;
 	}
 
+	/**
+	 * Generates an histogram of the image.
+	 * the x-axis represents color levels
+	 * the y-axis represents the frequence of the color level in the image
+	 * @return The histogram
+	 */
 	public PGMImage histogramme() {
 		int w = 256;
 		int h = 100;
