@@ -33,6 +33,7 @@ public class PGMImage {
 		s.commentChar('#');
 		s.parseNumbers();
 		s.wordChars('A', 'Z');
+		s.whitespaceChars('\0', ' ');
 
 		// Header
 		// Type
@@ -52,19 +53,24 @@ public class PGMImage {
 		s.nextToken();
 		maxgrey = s.nval;
 
-		int numPixels = width*height;
+		int numPixels = width * height;
 		pixels = new byte[numPixels];
-		for (int i = 0; s.nextToken() != TT_EOF && i<numPixels; i++) {
+		for (int i = 0; s.nextToken() != TT_EOF && i < numPixels; i++) {
 			byte val = (byte) (s.nval * 255 / maxgrey);
-			pixels[i++] = val;
+			pixels[i] = val;
 		}
 	}
 
 	BufferedImage toImage() {
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-        WritableRaster raster = (WritableRaster) image.getData();
-        raster.setDataElements(0, 0, width, height, pixels);
-        return image;
+		BufferedImage image = new BufferedImage(width, height,
+				BufferedImage.TYPE_BYTE_GRAY);
+		WritableRaster raster = image.getRaster();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				raster.setSample(x, y, 0, pixels[y * width + x]);
+			}
+		}
+		return image;
 	}
 
 }
