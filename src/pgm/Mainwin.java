@@ -176,7 +176,7 @@ public class Mainwin extends javax.swing.JFrame {
     			.addComponent(btnOuvrir)
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnHistogramme)
-    			.addPreferredGap(ComponentPlacement.UNRELATED)
+    			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnSeuillage)
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnAggrandir)
