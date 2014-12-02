@@ -187,4 +187,33 @@ public class PGMImage {
 		return scale(w, h);
 	}
 
+	/**
+	 * Generates an image that is the difference between this image and an other
+	 * one. The difference will be the size of this image (the other will be
+	 * scaled up or down)
+	 * 
+	 * @param other
+	 *            the other image
+	 * @return the difference
+	 */
+	public PGMImage difference(PGMImage other) {
+		byte[] otherpixs = other.scale(width, height).getPixels();
+		assert(otherpixs.length == pixels.length);
+		byte[] data = new byte[pixels.length];
+		
+		for (int i = 0; i < data.length; i++) {
+			data[i] = (byte)Math.abs(otherpixs[i] - pixels[i]);
+		}
+		return new PGMImage(width, height, data);
+	}
+
+	/**
+	 * Give access to the pixels. All pixel values are between 0x00 (black) and
+	 * 0xFF (white)
+	 * 
+	 * @return The array of pixels of the image
+	 */
+	public byte[] getPixels() {
+		return pixels;
+	}
 }
