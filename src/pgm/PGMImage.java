@@ -13,6 +13,7 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 
@@ -198,13 +199,42 @@ public class PGMImage {
 	 */
 	public PGMImage difference(PGMImage other) {
 		byte[] otherpixs = other.scale(width, height).getPixels();
-		assert(otherpixs.length == pixels.length);
+		assert (otherpixs.length == pixels.length);
 		byte[] data = new byte[pixels.length];
-		
+
 		for (int i = 0; i < data.length; i++) {
-			data[i] = (byte)Math.abs(otherpixs[i] - pixels[i]);
+			data[i] = (byte) Math.abs(otherpixs[i] - pixels[i]);
 		}
 		return new PGMImage(width, height, data);
+	}
+
+	/**
+	 * Exports the image to a pgm file
+	 * 
+	 * @param file
+	 * @throws IOException
+	 *             if the file cannot be written to
+	 */
+	public void export(File file) throws IOException {
+		FileWriter w = new FileWriter(file);
+		w.write("P2\n");
+		w.write("#" + file.getName() + " (exported by MEDEV-PGM)\n");
+		w.write(width + " " + height + "\n");
+		w.write(255 + "\n");
+		int charsInLine = 0;
+		for (int i = 0; i < pixels.length; i++) {
+			String chars = Integer.toString(pixels[i] & 0xFF);
+			if (chars.length() + charsInLine > 70) {
+				// No more than 70 chars per line
+				w.write('\n');
+				charsInLine = 0;
+			} else {
+				w.write(' ');
+			}
+			w.write(chars);
+			charsInLine += chars.length();
+		}
+		w.close();
 	}
 
 	/**
