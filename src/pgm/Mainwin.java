@@ -43,7 +43,7 @@ public class Mainwin extends javax.swing.JFrame {
     jPanel5 = new javax.swing.JPanel();
     imageLabel = new javax.swing.JLabel();
     jPanel6 = new javax.swing.JPanel();
-    jButton2 = new javax.swing.JButton();
+    btnOuvrir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,9 +68,9 @@ public class Mainwin extends javax.swing.JFrame {
 
     jSplitPane2.setRightComponent(jPanel5);
 
-    jButton2.setText("Ouvrir");
-    jButton2.setToolTipText("Ouvrir un fichier pgm");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
+    btnOuvrir.setText("Ouvrir");
+    btnOuvrir.setToolTipText("Ouvrir un fichier pgm");
+    btnOuvrir.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton2ActionPerformed(evt);
       }
@@ -98,30 +98,56 @@ public class Mainwin extends javax.swing.JFrame {
     		}
     	}
     });
+    
+    JButton btnAggrandir = new JButton("Aggrandir");
+    btnAggrandir.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent evt) {
+    		Main.scaleInPlace(2.0);
+    	}
+    });
+    
+    btnRduire = new JButton("Réduire");
+    btnRduire.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent evt) {
+    		Main.scaleInPlace(0.5);
+    	}
+    });
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6Layout.setHorizontalGroup(
-    	jPanel6Layout.createParallelGroup(Alignment.LEADING)
+    	jPanel6Layout.createParallelGroup(Alignment.TRAILING)
     		.addGroup(jPanel6Layout.createSequentialGroup()
+    			.addContainerGap()
     			.addGroup(jPanel6Layout.createParallelGroup(Alignment.LEADING)
-    				.addGroup(jPanel6Layout.createSequentialGroup()
-    					.addContainerGap()
-    					.addComponent(jButton2))
-    				.addComponent(btnHistogramme)
-    				.addGroup(jPanel6Layout.createSequentialGroup()
-    					.addContainerGap()
-    					.addComponent(btnSeuillage)))
-    			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    				.addComponent(btnOuvrir)
+    				.addComponent(btnSeuillage))
+    			.addContainerGap(40, Short.MAX_VALUE))
+    		.addGroup(jPanel6Layout.createSequentialGroup()
+    			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    			.addComponent(btnHistogramme)
+    			.addContainerGap())
+    		.addGroup(jPanel6Layout.createSequentialGroup()
+    			.addContainerGap(36, Short.MAX_VALUE)
+    			.addComponent(btnAggrandir)
+    			.addContainerGap())
+    		.addGroup(Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+    			.addContainerGap()
+    			.addComponent(btnRduire)
+    			.addContainerGap(23, Short.MAX_VALUE))
     );
     jPanel6Layout.setVerticalGroup(
     	jPanel6Layout.createParallelGroup(Alignment.LEADING)
     		.addGroup(jPanel6Layout.createSequentialGroup()
-    			.addComponent(jButton2)
+    			.addComponent(btnOuvrir)
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnHistogramme)
-    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addPreferredGap(ComponentPlacement.UNRELATED)
     			.addComponent(btnSeuillage)
-    			.addContainerGap(199, Short.MAX_VALUE))
+    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addComponent(btnAggrandir)
+    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addComponent(btnRduire)
+    			.addContainerGap(131, Short.MAX_VALUE))
     );
     jPanel6.setLayout(jPanel6Layout);
 
@@ -214,8 +240,9 @@ private JFileChooser getFileChooser(){
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private static javax.swing.JLabel imageLabel;
-  private javax.swing.JButton jButton2;
+  private javax.swing.JButton btnOuvrir;
   private javax.swing.JPanel jPanel5;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JSplitPane jSplitPane2;
+  private JButton btnRduire;
 }

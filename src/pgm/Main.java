@@ -38,4 +38,10 @@ public class Main {
 		transformed = opened.threshold();
 		Mainwin.displayImage(transformed.toImage());
 	}
+	
+	static void scaleInPlace(double factor) {
+		opened = opened.scale(factor);
+		transformed = null;
+		Mainwin.displayImage(opened.toImage());
+	}
 }

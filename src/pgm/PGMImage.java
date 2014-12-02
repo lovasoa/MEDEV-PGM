@@ -159,7 +159,7 @@ public class PGMImage {
 	 *            width of the current image
 	 * @return The scaled image
 	 */
-	public PGMImage scale(float factor) {
+	public PGMImage scale(double factor) {
 		int w = (int)(factor*width);
 		int h = (int)(factor*height);
 		byte[] data = new byte[pixels.length];
