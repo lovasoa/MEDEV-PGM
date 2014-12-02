@@ -14,6 +14,7 @@ import java.io.IOException;
  */
 public class Main {
 	static PGMImage opened;
+	static PGMImage transformed;
 
 	/**
 	 * @param args
@@ -29,12 +30,12 @@ public class Main {
 	}
 
 	static void histogram() {
-		PGMImage hist = opened.histogram();
-		Mainwin.displayImage(hist.toImage());
+		transformed = opened.histogram();
+		Mainwin.displayImage(transformed.toImage());
 	}
 
 	static void threshold() {
-		PGMImage res = opened.threshold();
-		Mainwin.displayImage(res.toImage());
+		transformed = opened.threshold();
+		Mainwin.displayImage(transformed.toImage());
 	}
 }
