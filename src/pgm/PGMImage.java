@@ -162,7 +162,7 @@ public class PGMImage {
 	public PGMImage scale(double factor) {
 		int w = (int)(factor*width);
 		int h = (int)(factor*height);
-		byte[] data = new byte[pixels.length];
+		byte[] data = new byte[w*h];
 		// Iteration over the pixels of the new image
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
@@ -171,7 +171,7 @@ public class PGMImage {
 				data[x+y*w] = pixels[oldx+oldy*width]; 
 			}
 		}
-		return new PGMImage(width, height, data);
+		return new PGMImage(w, h, data);
 	}
 
 }
