@@ -166,8 +166,8 @@ public class PGMImage {
 		// Iteration over the pixels of the new image
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				int oldx = Math.min((int)(x/factor), w-1);
-				int oldy = Math.min((int)(y/factor), h-1);
+				int oldx = (int)(x/factor);
+				int oldy = (int)(y/factor);
 				data[x+y*w] = pixels[oldx+oldy*width]; 
 			}
 		}
