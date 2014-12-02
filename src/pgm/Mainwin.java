@@ -47,8 +47,6 @@ public class Mainwin extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    imageLabel.setText("Image");
-
     javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
     jPanel5.setLayout(jPanel5Layout);
     jPanel5Layout.setHorizontalGroup(
@@ -115,25 +113,16 @@ public class Mainwin extends javax.swing.JFrame {
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6Layout.setHorizontalGroup(
-    	jPanel6Layout.createParallelGroup(Alignment.TRAILING)
+    	jPanel6Layout.createParallelGroup(Alignment.LEADING)
     		.addGroup(jPanel6Layout.createSequentialGroup()
     			.addContainerGap()
     			.addGroup(jPanel6Layout.createParallelGroup(Alignment.LEADING)
-    				.addComponent(btnOuvrir)
-    				.addComponent(btnSeuillage))
-    			.addContainerGap(40, Short.MAX_VALUE))
-    		.addGroup(jPanel6Layout.createSequentialGroup()
-    			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    			.addComponent(btnHistogramme)
+    				.addComponent(btnHistogramme, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    				.addComponent(btnAggrandir, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+    				.addComponent(btnRduire, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+    				.addComponent(btnSeuillage, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+    				.addComponent(btnOuvrir, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
     			.addContainerGap())
-    		.addGroup(jPanel6Layout.createSequentialGroup()
-    			.addContainerGap(36, Short.MAX_VALUE)
-    			.addComponent(btnAggrandir)
-    			.addContainerGap())
-    		.addGroup(Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-    			.addContainerGap()
-    			.addComponent(btnRduire)
-    			.addContainerGap(23, Short.MAX_VALUE))
     );
     jPanel6Layout.setVerticalGroup(
     	jPanel6Layout.createParallelGroup(Alignment.LEADING)
