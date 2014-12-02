@@ -132,6 +132,28 @@ public class Mainwin extends javax.swing.JFrame {
     	    }
     	}
     });
+    
+    btnSauvegarder = new JButton("Sauvegarder");
+    btnSauvegarder.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent evt) {
+    		JFileChooser fc = getFileChooser();
+    	    int returnVal = fc.showSaveDialog(btnSauvegarder.getParent());
+
+    	    if (returnVal == JFileChooser.APPROVE_OPTION) {
+    	      try {
+    	        File file = fc.getSelectedFile();
+    	        //This is where a real application would open the file.
+    	        System.out.println("Opening: " + file.getName() + ".");
+    	        Main.export(file);
+    	      } catch (IOException | UnsupportedOperationException e) {
+    	        System.err.println("Unable to open file");
+    	        e.printStackTrace();
+    	      }
+    	    } else {
+    	      System.err.println("Save command cancelled by user.");
+    	    }
+    	}
+    });
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6Layout.setHorizontalGroup(
@@ -144,7 +166,8 @@ public class Mainwin extends javax.swing.JFrame {
     				.addComponent(btnRduire, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
     				.addComponent(btnSeuillage, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
     				.addComponent(btnOuvrir, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-    				.addComponent(btnDifference, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+    				.addComponent(btnDifference, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+    				.addComponent(btnSauvegarder, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
     			.addContainerGap())
     );
     jPanel6Layout.setVerticalGroup(
@@ -161,7 +184,9 @@ public class Mainwin extends javax.swing.JFrame {
     			.addComponent(btnRduire)
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnDifference)
-    			.addContainerGap(100, Short.MAX_VALUE))
+    			.addPreferredGap(ComponentPlacement.RELATED)
+    			.addComponent(btnSauvegarder)
+    			.addContainerGap(69, Short.MAX_VALUE))
     );
     jPanel6.setLayout(jPanel6Layout);
 
@@ -259,4 +284,5 @@ private JFileChooser getFileChooser(){
   private javax.swing.JPanel jPanel6;
   private javax.swing.JSplitPane jSplitPane2;
   private JButton btnRduire;
+  private JButton btnSauvegarder;
 }

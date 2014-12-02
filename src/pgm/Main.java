@@ -51,4 +51,9 @@ public class Main {
 		transformed = opened.difference(other);
 		Mainwin.displayImage(transformed.toImage());
 	}
+
+	static void export(File file) throws IOException {
+		PGMImage img = (transformed == null) ? opened : transformed;
+		img.export(file);
+	}
 }
