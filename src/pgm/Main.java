@@ -6,6 +6,7 @@
 package pgm;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -43,5 +44,11 @@ public class Main {
 		opened = opened.scale(factor);
 		transformed = null;
 		Mainwin.displayImage(opened.toImage());
+	}
+	
+	static void difference(File file) throws FileNotFoundException, IOException {
+		PGMImage other = new PGMImage(file);
+		transformed = opened.difference(other);
+		Mainwin.displayImage(transformed.toImage());
 	}
 }
