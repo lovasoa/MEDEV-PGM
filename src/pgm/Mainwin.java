@@ -40,31 +40,31 @@ public class Mainwin extends javax.swing.JFrame {
   private void initComponents() {
 
     jSplitPane2 = new javax.swing.JSplitPane();
-    jPanel5 = new javax.swing.JPanel();
+    rightPanel = new javax.swing.JPanel();
     imageLabel = new javax.swing.JLabel();
-    jPanel6 = new javax.swing.JPanel();
+    leftPanel = new javax.swing.JPanel();
     btnOuvrir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-    jPanel5.setLayout(jPanel5Layout);
-    jPanel5Layout.setHorizontalGroup(
-      jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel5Layout.createSequentialGroup()
+    javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
+    rightPanel.setLayout(rightPanelLayout);
+    rightPanelLayout.setHorizontalGroup(
+      rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(rightPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
         .addContainerGap())
     );
-    jPanel5Layout.setVerticalGroup(
-      jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel5Layout.createSequentialGroup()
+    rightPanelLayout.setVerticalGroup(
+      rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(rightPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
         .addContainerGap())
     );
 
-    jSplitPane2.setRightComponent(jPanel5);
+    jSplitPane2.setRightComponent(rightPanel);
 
     btnOuvrir.setText("Ouvrir");
     btnOuvrir.setToolTipText("Ouvrir un fichier pgm");
@@ -155,12 +155,12 @@ public class Mainwin extends javax.swing.JFrame {
     	}
     });
 
-    javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-    jPanel6Layout.setHorizontalGroup(
-    	jPanel6Layout.createParallelGroup(Alignment.LEADING)
-    		.addGroup(jPanel6Layout.createSequentialGroup()
+    javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+    leftPanelLayout.setHorizontalGroup(
+    	leftPanelLayout.createParallelGroup(Alignment.LEADING)
+    		.addGroup(leftPanelLayout.createSequentialGroup()
     			.addContainerGap()
-    			.addGroup(jPanel6Layout.createParallelGroup(Alignment.LEADING)
+    			.addGroup(leftPanelLayout.createParallelGroup(Alignment.LEADING)
     				.addComponent(btnHistogramme, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     				.addComponent(btnAggrandir, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
     				.addComponent(btnRduire, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
@@ -170,9 +170,9 @@ public class Mainwin extends javax.swing.JFrame {
     				.addComponent(btnSauvegarder, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
     			.addContainerGap())
     );
-    jPanel6Layout.setVerticalGroup(
-    	jPanel6Layout.createParallelGroup(Alignment.LEADING)
-    		.addGroup(jPanel6Layout.createSequentialGroup()
+    leftPanelLayout.setVerticalGroup(
+    	leftPanelLayout.createParallelGroup(Alignment.LEADING)
+    		.addGroup(leftPanelLayout.createSequentialGroup()
     			.addComponent(btnOuvrir)
     			.addPreferredGap(ComponentPlacement.RELATED)
     			.addComponent(btnHistogramme)
@@ -188,9 +188,9 @@ public class Mainwin extends javax.swing.JFrame {
     			.addComponent(btnSauvegarder)
     			.addContainerGap(69, Short.MAX_VALUE))
     );
-    jPanel6.setLayout(jPanel6Layout);
+    leftPanel.setLayout(leftPanelLayout);
 
-    jSplitPane2.setLeftComponent(jPanel6);
+    jSplitPane2.setLeftComponent(leftPanel);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -280,8 +280,8 @@ private JFileChooser getFileChooser(){
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private static javax.swing.JLabel imageLabel;
   private javax.swing.JButton btnOuvrir;
-  private javax.swing.JPanel jPanel5;
-  private javax.swing.JPanel jPanel6;
+  private javax.swing.JPanel rightPanel;
+  private javax.swing.JPanel leftPanel;
   private javax.swing.JSplitPane jSplitPane2;
   private JButton btnRduire;
   private JButton btnSauvegarder;
