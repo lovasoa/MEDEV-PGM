@@ -151,26 +151,28 @@ public class PGMImage {
 		return threshold(0);
 	}
 
-
 	/**
 	 * Scales the image up or down.
-	 * @param w The width of the new image
-	 * @param h The height of the new image
+	 * 
+	 * @param w
+	 *            The width of the new image
+	 * @param h
+	 *            The height of the new image
 	 * @return the new image
 	 */
 	public PGMImage scale(int w, int h) {
-		byte[] data = new byte[w*h];
+		byte[] data = new byte[w * h];
 		// Iteration over the pixels of the new image
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				int oldx = x*width/w;
-				int oldy = y*height/h;
-				data[x+y*w] = pixels[oldx+oldy*width]; 
+				int oldx = x * width / w;
+				int oldy = y * height / h;
+				data[x + y * w] = pixels[oldx + oldy * width];
 			}
 		}
 		return new PGMImage(w, h, data);
 	}
-	
+
 	/**
 	 * Scales the image up or down.
 	 * 
@@ -180,9 +182,9 @@ public class PGMImage {
 	 * @return The scaled image
 	 */
 	public PGMImage scale(double factor) {
-		int w = (int)(factor*width);
-		int h = (int)(factor*height);
-		return scale(w,h);
+		int w = (int) (factor * width);
+		int h = (int) (factor * height);
+		return scale(w, h);
 	}
 
 }
