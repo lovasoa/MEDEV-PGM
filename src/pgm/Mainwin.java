@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -40,29 +41,12 @@ public class Mainwin extends javax.swing.JFrame {
   private void initComponents() {
 
     jSplitPane2 = new javax.swing.JSplitPane();
-    rightPanel = new javax.swing.JPanel();
     imageLabel = new javax.swing.JLabel();
+    rightPanel = new javax.swing.JScrollPane(imageLabel);
     leftPanel = new javax.swing.JPanel();
     btnOuvrir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-    javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
-    rightPanel.setLayout(rightPanelLayout);
-    rightPanelLayout.setHorizontalGroup(
-      rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(rightPanelLayout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-        .addContainerGap())
-    );
-    rightPanelLayout.setVerticalGroup(
-      rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(rightPanelLayout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-        .addContainerGap())
-    );
 
     jSplitPane2.setRightComponent(rightPanel);
 
@@ -280,7 +264,7 @@ private JFileChooser getFileChooser(){
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private static javax.swing.JLabel imageLabel;
   private javax.swing.JButton btnOuvrir;
-  private javax.swing.JPanel rightPanel;
+  private JScrollPane rightPanel;
   private javax.swing.JPanel leftPanel;
   private javax.swing.JSplitPane jSplitPane2;
   private JButton btnRduire;
